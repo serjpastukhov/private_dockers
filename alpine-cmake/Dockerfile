@@ -22,6 +22,7 @@ RUN apk update && \
         doxygen \
         graphviz \
         ttf-freefont \
+        valgrind \
         python3 && \
     rm -rf /var/cache/apk/* 
 
