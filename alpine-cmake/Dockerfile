@@ -18,6 +18,10 @@ RUN apk update && \
         glew-dev \
         openssl-dev \
         fontconfig-dev \
+        musl-dbg \
+        doxygen \
+        graphviz \
+        ttf-freefont \
         python3 && \
     rm -rf /var/cache/apk/* 
 
