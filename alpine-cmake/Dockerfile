@@ -17,12 +17,9 @@ RUN apk update && \
         glfw-dev \
         glew-dev \
         openssl-dev \
-        fontconfig-dev \
         musl-dbg \
-        doxygen \
-        graphviz \
-        ttf-freefont \
         valgrind \
-        python3 && \
+        python3 py3-pip && \
     rm -rf /var/cache/apk/* 
+RUN pip3 install conan
 
