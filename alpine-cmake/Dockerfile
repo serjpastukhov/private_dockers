@@ -14,9 +14,6 @@ RUN apk update && \
         libstdc++ \
         ninja \
         git \
-        glfw-dev \
-        glew-dev \
-        openssl-dev \
         musl-dbg \
         valgrind \
         python3 py3-pip && \
