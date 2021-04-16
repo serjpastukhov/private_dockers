@@ -13,3 +13,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Docker Build alpine-cmake image
       run: docker build ./alpine-cmake -t tingoose/alpine-cmake
+    
+    - name: Docker Build alpine-cmake-doxygen image
+      run: docker build ./alpine-cmake-doxygen -t tingoose/alpine-cmake-doxygen
+    
+    - name: Docker Build cuda-cmake image
+      run: docker build ./cuda-cmake -t tingoose/cuda-cmake
