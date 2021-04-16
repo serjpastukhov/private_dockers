@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.2-devel
+FROM nvidia/cuda:11.2.2-devel-ubuntu18.04
 
 ARG OPENCV_VERSION=3.4.0
 ARG OPENCV_INSTALL_PATH=/opencv/usr
