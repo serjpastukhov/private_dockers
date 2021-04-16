@@ -9,10 +9,27 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Push to Docker Hub
+      - name: Build-Push alpine-cmake
         uses: docker/build-push-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_LOGIN }}
           password: ${{ secrets.DOCKERHUB_PASS }}
           repository: tingoose/alpine-cmake
+          dockerfile: alpine-cmake/Dockerfile
+          tag_with_ref: true
+      - name: Build-Push alpine-cmake-doxygen
+        uses: docker/build-push-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_LOGIN }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+          repository: tingoose/alpine-cmake-doxygen
+          dockerfile: alpine-cmake-doxygen/Dockerfile
+          tag_with_ref: true
+      - name: Build-Push cuda-cmake
+        uses: docker/build-push-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_LOGIN }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+          repository: tingoose/cuda-cmake
+          dockerfile: cuda-cmake/Dockerfile
           tag_with_ref: true
