@@ -33,8 +33,10 @@ RUN apt-get update && \
 		libswscale-dev \
 		libeigen3-dev \
 		libgtk2.0-dev \
+    cuda-nsight-systems-11-2 \
 		pkg-config \
 		ninja-build \
+    gdb gdbserver \
 		## Cleanup
 		&& rm -rf /var/lib/apt/lists/*
 
