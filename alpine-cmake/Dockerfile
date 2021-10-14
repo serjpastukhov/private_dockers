@@ -18,9 +18,9 @@ RUN apk update && \
         pkgconfig \
         valgrind \
         gtk+2.0-dev \
-        python3 py3-pip && \
+        python3 python3-dev py3-pip && \
     rm -rf /var/cache/apk/* 
-RUN pip3 install --upgrade pip && pip3 install conan
+RUN pip3 install --upgrade pip && pip3 install conan pytest psutil
 
 # Setting up default conan profile
 RUN conan profile new default --detect && conan profile update settings.compiler.libcxx=libstdc++11 default

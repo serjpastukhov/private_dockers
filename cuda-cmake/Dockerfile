@@ -2,7 +2,7 @@ FROM nvidia/cuda:11.2.2-devel-ubuntu18.04
 
 RUN apt-get update && \
     apt-get install -y \
-		python-pip \
+		python3-pip \
         build-essential \
         git \
         wget \
@@ -33,9 +33,12 @@ RUN apt-get update && \
     cuda-nsight-systems-11-2 \
 		pkg-config \
 		ninja-build \
+		python3-dev \
     gdb gdbserver \
 		## Cleanup
 		&& rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --upgrade pip && pip3 install conan pytest psutil
 
 ARG CMAKE_VERSION=3.20.5
 

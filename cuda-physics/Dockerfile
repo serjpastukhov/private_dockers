@@ -10,3 +10,8 @@ RUN add-apt-repository ppa:ubuntu-toolchain-r/test && \
 		libglew-dev \
 		freeglut3-dev && \
 	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9
+
+RUN pip3 install --upgrade pip && pip3 install conan pytest psutil
+
+# Setting up default conan profile
+RUN conan profile new default --detect && conan profile update settings.compiler.libcxx=libstdc++11 default
