@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.14
 
 MAINTAINER Dmitry Kargin <dmitry.n.kargin@gmail.com>
 
@@ -17,6 +17,7 @@ RUN apk update && \
         musl-dbg \
         pkgconfig \
         valgrind \
+        clang \
         gtk+2.0-dev \
         python3 python3-dev py3-pip && \
     rm -rf /var/cache/apk/* 
