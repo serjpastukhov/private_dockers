@@ -1,17 +1,12 @@
-FROM tingoose/cuda-cmake
+FROM tingoose/cuda-cmake:v0.4
 
-RUN apt-get update && apt-get install -y software-properties-common
+RUN apt-get update && apt-get install -y \
+    libglew-dev \
+    libglfw3-dev \
+    libglm-dev \
+    llvm-6.0 llvm-6.0-tools \    
+    freeglut3-dev
 
-RUN add-apt-repository ppa:ubuntu-toolchain-r/test && \
-	apt-get update && \
-    apt-get install -y \
-    	gcc-9 \
-    	g++-9 \
-		libglew-dev \
-		freeglut3-dev && \
-	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9
-
-RUN pip3 install --upgrade pip && pip3 install conan pytest psutil
-
-# Setting up default conan profile
-RUN conan profile new default --detect && conan profile update settings.compiler.libcxx=libstdc++11 default
+RUN wget --no-check-certificate https://github.com/mmatl/travis_debs/raw/master/xenial/mesa_18.3.3-0.deb && \
+    dpkg -i ./mesa_18.3.3-0.deb
+RUN pip install jinja2 pyopengl pygame numpy xlsxwriter openpyxl pandas trimesh  pyrender matplotlib
