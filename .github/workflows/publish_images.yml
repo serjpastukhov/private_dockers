@@ -12,7 +12,10 @@ jobs:
     env:
       LOGIN: ${{ secrets.DOCKERHUB_LOGIN }}
       NAME: alpine-cmake
+    # if: github.ref == 'refs/heads/master'
     steps:
+      - name: check github ref
+        run: echo ${{ github.ref }}
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Login to https://hub.docker.com/
@@ -21,3 +24,4 @@ jobs:
         run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:test -f alpine-cmake/Dockerfile .
       - name: Push image to docker.io
         run: docker push $LOGIN/$NAME:test
+      
