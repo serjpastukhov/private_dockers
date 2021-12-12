@@ -4,6 +4,8 @@ on:
   push:
       branches:
       - master
+      paths:
+      - 'alpine-cmake/**'
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -12,24 +14,6 @@ jobs:
       LOGIN: ${{ secrets.DOCKERHUB_LOGIN }}
       NAME: alpine-cmake
     steps:
-      - name: check modified files
-          id: check_files
-          run: |
-            echo "=============== list modified files ==============="
-            git diff --name-only HEAD^ HEAD
-            
-            echo "========== check paths of modified files =========="
-            git diff --name-only HEAD^ HEAD > files.txt
-            while IFS= read -r file
-            do
-              echo $file
-              if [[ $file != db/* ]]; then
-                echo "This modified file is not under the 'db' folder."
-                echo "::set-output name=run_job::false"
-                break
-              else
-                echo "::set-output name=run_job::true"
-              fi
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Login to https://hub.docker.com/
