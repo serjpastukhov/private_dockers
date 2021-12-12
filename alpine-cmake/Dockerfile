@@ -1,5 +1,4 @@
 FROM alpine:3.14
-# Baba-booyey
 
 LABEL maintainer="Dmitry Kargin <dmitry.n.kargin@gmail.com>"
 
