@@ -1,6 +1,6 @@
 FROM tingoose/cuda-cmake:v0.4
 
-MAINTAINER Dmitry Kargin <dmitry.n.kargin@gmail.com>
+LABEL maintainer="Dmitry Kargin <dmitry.n.kargin@gmail.com>"
 
 RUN apt-get update && \
     apt-get install -y \

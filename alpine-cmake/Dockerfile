@@ -1,6 +1,6 @@
 FROM alpine:3.14
 
-MAINTAINER Dmitry Kargin <dmitry.n.kargin@gmail.com>
+LABEL maintainer="Dmitry Kargin <dmitry.n.kargin@gmail.com>"
 
 RUN apk update && \
     apk upgrade && \
