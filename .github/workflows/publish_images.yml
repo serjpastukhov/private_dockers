@@ -12,14 +12,12 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Check repo name
-        run: echo $LOGIN
       - name: Login to https://hub.docker.com/
         run:  echo ${{ secrets.DOCKER_PASS }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
       - name: Build image
-        run: docker build -t $LOGIN/$NAME -f Dockerfile alpine-cmake/Dockerfile
+        run: docker build -t $LOGIN/$NAME:test -f Dockerfile alpine-cmake/Dockerfile
       - name: Push image to docker.io
-        run: docker push $LOGIN/$NAME
+        run: docker push $LOGIN/$NAME:test
       # - name: Build-Push alpine-cmake
       #   uses: docker/build-push-action@v2
       #   with:
