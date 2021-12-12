@@ -1,5 +1,5 @@
 FROM        ubuntu:20.04
-MAINTAINER  Dmitry Kargin
+LABEL maintainer="Dmitry Kargin <dmitry.n.kargin@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 # update and install dependencies
