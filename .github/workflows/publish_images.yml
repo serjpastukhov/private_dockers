@@ -1,7 +1,6 @@
 name: Build and publish all images in repo
 
-on:
-  push: [published]
+on: [push]
 
 jobs:
   push_to_registry:
