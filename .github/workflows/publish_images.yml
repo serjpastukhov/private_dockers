@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       LOGIN: ${{ secrets.DOCKERHUB_LOGIN }}
-      NAME: $alpine-cmake
+      NAME: alpine-cmake
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
