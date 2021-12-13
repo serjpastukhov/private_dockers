@@ -1,5 +1,5 @@
 FROM tingoose/cuda-cmake:v0.4
-# 123
+
 RUN apt-get update && apt-get install -y \
     libglew-dev \
     libglfw3-dev \
