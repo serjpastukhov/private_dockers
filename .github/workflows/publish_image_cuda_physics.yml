@@ -26,7 +26,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: $NAME/cuda-physics
+          images: $LOGIN/cuda-physics
       - name: Build image
         run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.meta.outputs.tags }} -f cuda-physics/Dockerfile .
       # - name: Build and push Docker image
