@@ -22,13 +22,13 @@ jobs:
       #     username: $LOGIN
       #     password: ${{ secrets.DOCKERHUB_PASS }}
         run:  echo ${{ secrets.DOCKERHUB_PASS }} | docker login -u ${{ secrets.DOCKERHUB_LOGIN }} --password-stdin
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: $NAME/cuda-physics
       - name: Build image
         run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.meta.outputs.tags }} -f cuda-physics/Dockerfile .
-      # - name: Extract metadata (tags, labels) for Docker
-      #   id: meta
-      #   uses: docker/metadata-action@v3
-      #   with:
-      #     images: $NAME/cuda-physics
       # - name: Build and push Docker image
       #   uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
       #   with:
