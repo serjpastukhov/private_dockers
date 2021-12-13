@@ -1,5 +1,5 @@
 name: Build and publish alpine-cmake image
-
+# 123
 on:
   push:
       branches:
@@ -20,7 +20,7 @@ jobs:
         run:  echo ${{ secrets.DOCKERHUB_PASS }} | docker login -u ${{ secrets.DOCKERHUB_LOGIN }} --password-stdin
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(TZ=UTC-3 date +'%F-%H-%M')" + $(git rev-parse --short "$GITHUB_SHA")
+        run: echo "::set-output name=date::$(TZ=UTC-3 date +'%F-%H-%M')"$(git rev-parse --short "$GITHUB_SHA")
       - name: Build image
         run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake/Dockerfile .
       - name: Push image to docker.io
