@@ -16,10 +16,13 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Login to https://hub.docker.com/
+      - name: Login to Docker Hub
         run:  echo ${{ secrets.DOCKERHUB_PASS }} | docker login -u ${{ secrets.DOCKERHUB_LOGIN }} --password-stdin
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(TZ=UTC-3 date +'%F-%H-%M')"
       - name: Build image
-        run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:test -f cuda-opencv/Dockerfile .
+        run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f cuda-opencv/Dockerfile .
       - name: Push image to docker.io
-        run: docker push $LOGIN/$NAME:test
+        run: docker push $LOGIN/$NAME:${{ steps.date.outputs.date }}
       

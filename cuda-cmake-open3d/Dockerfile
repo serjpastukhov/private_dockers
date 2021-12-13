@@ -1,5 +1,5 @@
 FROM tingoose/cuda-cmake:v0.4
-
+#
 LABEL maintainer="Dmitry Kargin <dmitry.n.kargin@gmail.com>"
 
 RUN apt-get update && \
