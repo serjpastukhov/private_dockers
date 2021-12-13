@@ -1,5 +1,5 @@
 name: Build and publish alpine-cmake image
-# 123
+
 on:
   push:
       branches:
