@@ -1,0 +1,25 @@
+name: Build and publish cuda-opencv image
+
+on:
+  push:
+      branches:
+      - master
+      paths:
+      - 'cuda-opencv/**'
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    env:
+      LOGIN: ${{ secrets.DOCKERHUB_LOGIN }}
+      NAME: cuda-opencv
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Login to https://hub.docker.com/
+        run:  echo ${{ secrets.DOCKERHUB_PASS }} | docker login -u ${{ secrets.DOCKERHUB_LOGIN }} --password-stdin
+      - name: Build image
+        run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:test -f cuda-opencv/Dockerfile .
+      - name: Push image to docker.io
+        run: docker push $LOGIN/$NAME:test
+      

@@ -1,0 +1,25 @@
+name: Build and publish alpine-cmake image
+
+on:
+  push:
+      branches:
+      - master
+      paths:
+      - 'alpine-cmake/**'
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    env:
+      LOGIN: ${{ secrets.DOCKERHUB_LOGIN }}
+      NAME: alpine-cmake
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Login to https://hub.docker.com/
+        run:  echo ${{ secrets.DOCKERHUB_PASS }} | docker login -u ${{ secrets.DOCKERHUB_LOGIN }} --password-stdin
+      - name: Build image
+        run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:test -f alpine-cmake/Dockerfile .
+      - name: Push image to docker.io
+        run: docker push $LOGIN/$NAME:test
+      
