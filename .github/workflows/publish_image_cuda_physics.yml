@@ -31,7 +31,7 @@ jobs:
       #       type=schedule,pattern={{date 'YYYYMMDD'}}
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(TZ=UTC+3 date +'%F-%H-%M')"
+        run: echo "::set-output name=date::$(TZ=UTC-3 date +'%F-%H-%M')"
       - name: Build image
         run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f cuda-physics/Dockerfile .
       # - name: Build and push Docker image
