@@ -25,4 +25,15 @@ jobs:
         run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake-doxygen/Dockerfile .
       - name: Push image to docker.io
         run: docker push $LOGIN/$NAME:${{ steps.date.outputs.date }}
-      
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          # message: |
+          #   ${{ github.actor }} created commit:
+          #   Commit message: ${{ github.event.commits[0].message }}
+            
+          #   Repository: ${{ github.repository }}
+            
+          #   See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
