@@ -1,5 +1,5 @@
 FROM alpine:3.14
-
+#
 LABEL maintainer="Dmitry Kargin <dmitry.n.kargin@gmail.com>"
 
 RUN apk update && \
