@@ -29,7 +29,7 @@ jobs:
         run: echo "::set-output name=date::$(TZ=UTC-3 date +'%F-%H-%M')"
       - name: Build image
         id: build
-        run: echo "::set0output name=build::DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake-doxygen/Dockerfile ."
+        run: echo "::set0output name=build::${{ DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake-doxygen/Dockerfile . }}"
       - name: Push image to docker.io
         run: docker push $LOGIN/$NAME:${{ steps.date.outputs.date }}
       - name: send telegram message on push
