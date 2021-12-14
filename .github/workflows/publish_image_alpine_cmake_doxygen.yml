@@ -32,7 +32,7 @@ jobs:
       - name: Build image
         id: build
         # run: echo "::set-output name=build::  DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake-doxygen/Dockerfile . }}"
-        run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake-doxygen/Dockerfile . > /home/runner/work/private_dockers/private_dockers/builld_log_file.itxt
+        run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake-doxygen/Dockerfile . > /home/runner/work/private_dockers/private_dockers/builld_log_file.txt
       - name: get build log
         id: log
         run: LOG=$(tail -n 20 /home/runner/work/private_dockers/private_dockers/builld_log_file.txt) echo "::set-output name=log::$LOG"

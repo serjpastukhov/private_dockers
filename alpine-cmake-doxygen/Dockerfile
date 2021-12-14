@@ -1,5 +1,5 @@
 FROM tingoose/alpine-cmake
-#
+
 LABEL maintainer="Dmitry Kargin <dmitry.n.kargin@gmail.com>"
 
 RUN apk update && \
