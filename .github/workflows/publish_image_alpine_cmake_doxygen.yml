@@ -32,10 +32,10 @@ jobs:
       - name: Build image
         id: build
         # run: echo "::set-output name=build::  DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake-doxygen/Dockerfile . }}"
-        run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake-doxygen/Dockerfile . > builld_log_file.itxt
+        run: DOCKER_BUILDKIT=1 docker build -t $LOGIN/$NAME:${{ steps.date.outputs.date }} -f alpine-cmake-doxygen/Dockerfile . > /home/runner/work/private_dockers/private_dockers/builld_log_file.itxt
       - name: get build log
         id: log
-        run: LOG=$(tail -n 20 builld_log_file.txt) echo "::set-output name=log::$LOG"
+        run: LOG=$(tail -n 20 /home/runner/work/private_dockers/private_dockers/builld_log_file.txt) echo "::set-output name=log::$LOG"
       - name: Push image to docker.io
         run: docker push $LOGIN/$NAME:${{ steps.date.outputs.date }}
       - name: send telegram message on push
