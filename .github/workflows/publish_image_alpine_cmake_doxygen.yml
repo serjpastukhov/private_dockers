@@ -6,10 +6,10 @@ on:
       - master
       paths:
       - 'alpine-cmake-doxygen/**'
-  workflow_call:
-    outputs:
-      description: 'image push output'
-      value: ${{ jobs.push_to_registry.outputs.output }}
+  # workflow_call:
+  #   outputs:
+  #     description: 'image push output'
+  #     value: ${{ jobs.push_to_registry.outputs.output }}
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -42,5 +42,7 @@ jobs:
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
+
+            ${{ jobs.push_to_registry.outputs.output }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
