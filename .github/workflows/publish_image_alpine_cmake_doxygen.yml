@@ -43,6 +43,6 @@ jobs:
             
             Repository: ${{ github.repository }}
 
-            ${{ jobs.push_to_registry.outputs.output }}
+            ${{ steps.build.outputs.build }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
